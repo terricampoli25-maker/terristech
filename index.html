@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terri's Tech</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --card-bg: rgba(20, 15, 8, 0.82);
+    --card-border: rgba(180, 150, 80, 0.25);
+    --gold: #c8a84b;
+    --gold-light: #e8c870;
+    --cream: #f5f0e8;
+    --text-muted: rgba(245, 240, 232, 0.6);
+    --btn-coming: rgba(255,255,255,0.1);
+    --btn-coming-border: rgba(255,255,255,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    min-height: 100vh;
+    font-family: 'Crimson Text', serif;
+    background: #0d0a07;
+    color: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* Fixed painterly background */
+  .bg {
+    position: fixed;
+    inset: 0;
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-position: center top;
+    background-attachment: fixed;
+    z-index: 0;
+  }
+
+  /* Subtle overlay to help cards read */
+  .bg-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.18);
+    z-index: 0;
+  }
+
+  /* Main content */
+  .page {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem 4rem;
+  }
+
+  /* Header — the painted title image */
+  .site-header {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 1rem;
+    display: block;
+  }
+
+  .site-header img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Tagline */
+  .tagline {
+    text-align: center;
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--cream);
+    letter-spacing: 0.15em;
+    margin-bottom: 3rem;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    opacity: 0.9;
+  }
+
+  /* Cards grid */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  /* Individual card */
+  .card {
+    display: flex;
+    flex-direction: row;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow:
+      0 8px 32px rgba(0,0,0,0.6),
+      0 0 0 1px rgba(0,0,0,0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    backdrop-filter: blur(4px);
+  }
+
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow:
+      0 16px 48px rgba(0,0,0,0.7),
+      0 0 0 1px rgba(180,150,80,0.2);
+  }
+
+  /* Thumbnail — tarot card proportions */
+  .card-thumb {
+    width: 130px;
+    min-width: 130px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Coming soon thumb */
+  .card-thumb.coming-soon img {
+    filter: blur(3px) brightness(0.4);
+  }
+
+  .coming-soon-label {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: rgba(245,240,232,0.5);
+    text-transform: uppercase;
+  }
+
+  /* Placeholder for coming soon with no image */
+  .thumb-placeholder {
+    width: 100%;
+    height: 100%;
+    min-height: 195px;
+    background: linear-gradient(135deg, #1a1208 0%, #0d0a05 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.25em;
+    color: rgba(245,240,232,0.2);
+    text-transform: uppercase;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  /* Card info */
+  .card-info {
+    flex: 1;
+    padding: 1rem 1rem 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .card-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    letter-spacing: 0.1em;
+    line-height: 1.2;
+  }
+
+  .card-blurb {
+    font-family: 'Crimson Text', serif;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+    flex: 1;
+  }
+
+  /* Price */
+  .card-price {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+  }
+
+  /* Buttons */
+  .card-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-top: 0.25rem;
+  }
+
+  .btn {
+    display: block;
+    width: 100%;
+    padding: 0.35rem 0.5rem;
+    border-radius: 2px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+  }
+
+  .btn-launch {
+    background: rgba(180,150,80,0.2);
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+  }
+
+  .btn-launch:hover {
+    background: rgba(180,150,80,0.35);
+    color: var(--cream);
+  }
+
+  .btn-store {
+    background: var(--btn-coming);
+    border: 1px solid var(--btn-coming-border);
+    color: rgba(245,240,232,0.25);
+    cursor: not-allowed;
+  }
+
+  .btn-donate {
+    background: transparent;
+    border: 1px solid rgba(180,150,80,0.3);
+    color: rgba(200,168,75,0.6);
+    font-size: 0.5rem;
+    letter-spacing: 0.1em;
+    margin-top: 0.15rem;
+  }
+
+  .btn-donate:hover {
+    background: rgba(180,150,80,0.1);
+    color: var(--gold);
+  }
+
+  /* Divider between button groups */
+  .btn-divider {
+    height: 1px;
+    background: rgba(180,150,80,0.1);
+    margin: 0.15rem 0;
+  }
+
+  /* Footer */
+  .site-footer {
+    text-align: center;
+    margin-top: 4rem;
+    padding: 2rem;
+    border-top: 1px solid rgba(180,150,80,0.15);
+    font-family: 'Crimson Text', serif;
+    font-size: 0.85rem;
+    color: rgba(245,240,232,0.4);
+    letter-spacing: 0.1em;
+  }
+
+  .site-footer a {
+    color: var(--gold);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+
+  .site-footer a:hover {
+    opacity: 1;
+  }
+
+  /* Responsive */
+  @media (max-width: 700px) {
+    .cards-grid {
+      grid-template-columns: 1fr;
+    }
+    .card-thumb {
+      width: 110px;
+      min-width: 110px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg"></div>
+<div class="bg-overlay"></div>
+
+<div class="page">
+
+  <!-- Header image with painted title -->
+  <div class="site-header">
+    <img src="background.jpg" alt="Terri's Tech" style="border-radius:4px 4px 0 0; max-height:280px; object-fit:cover; object-position: center top;">
+  </div>
+
+  <p class="tagline">To thine own self be true.</p>
+
+  <!-- Cards grid — 12 slots, 2 columns -->
+  <div class="cards-grid">
+
+    <!-- Card 1 — Terri | Your Therapist (LIVE) -->
+    <div class="card">
+      <div class="card-thumb">
+        <img src="thumb-therapist.jpg" alt="Terri | Your Therapist">
+      </div>
+      <div class="card-info">
+        <div class="card-name">Terri | Your Therapist</div>
+        <div class="card-blurb">A warm, illustrated AI therapist ready to listen. Terri offers a gentle space to think out loud, reflect, and feel heard — whenever you need her.</div>
+        <div class="card-price">Free</div>
+        <div class="card-buttons">
+          <a href="https://terri-therapist.terricampoli25.workers.dev/" class="btn btn-launch" target="_blank">Launch App</a>
+          <button class="btn btn-store" disabled>App Store — Coming Soon</button>
+          <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
+          <div class="btn-divider"></div>
+          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support this app</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 — The Measure (LIVE) -->
+    <div class="card">
+      <div class="card-thumb">
+        <img src="thumb-measure.jpg" alt="The Measure">
+      </div>
+      <div class="card-info">
+        <div class="card-name">The Measure</div>
+        <div class="card-blurb">A gothic pocket watch timer, set against a candlelit library. Count up or down in elegant style — time, measured as it deserves to be.</div>
+        <div class="card-price">Free — Beta</div>
+        <div class="card-buttons">
+          <a href="https://the-measure.terricampoli25.workers.dev/" class="btn btn-launch" target="_blank">Launch App</a>
+          <button class="btn btn-store" disabled>App Store — Coming Soon</button>
+          <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
+          <div class="btn-divider"></div>
+          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support this app</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cards 3-12 — Coming Soon -->
+    <!-- Card 3 -->
+    <div class="card">
+      <div class="card-thumb coming-soon">
+        <div class="thumb-placeholder">Coming<br>Soon</div>
+      </div>
+      <div class="card-info">
+        <div class="card-name" style="color:rgba(200,168,75,0.3)">Coming Soon</div>
+        <div class="card-blurb" style="color:rgba(245,240,232,0.2)">Something new is taking shape in the workshop. Check back ere long.</div>
+        <div class="card-buttons">
+          <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
+          <button class="btn btn-store" disabled>App Store — Coming Soon</button>
+          <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
+          <div class="btn-divider"></div>
+          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support future apps</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="card">
+      <div class="card-thumb coming-soon">
+        <div class="thumb-placeholder">Coming<br>Soon</div>
+      </div>
+      <div class="card-info">
+        <div class="card-name" style="color:rgba(200,168,75,0.3)">Coming Soon</div>
+        <div class="card-blurb" style="color:rgba(245,240,232,0.2)">Another tool in progress. Good things take time — and we are time's subjects.</div>
+        <div class="card-buttons">
+          <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
+          <button class="btn btn-store" disabled>App Store — Coming Soon</button>
+          <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
+          <div class="btn-divider"></div>
+          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support future apps</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="card">
+      <div class="card-thumb coming-soon">
+        <div class="thumb-placeholder">Coming<br>Soon</div>
+      </div>
+      <div class="card-info">
+        <div class="card-name" style="color:rgba(200,168,75,0.3)">Coming Soon</div>
+        <div class="card-blurb" style="color:rgba(245,240,232,0.2)">The workshop never sleeps. Something worth waiting for is on its way.</div>
+        <div class="card-buttons">
+          <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
+          <button class="btn btn-store" disabled>App Store — Coming Soon</button>
+          <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
+          <div class="btn-divider"></div>
+          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support future apps</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="card">
+      <div class="card-thumb coming-soon">
+        <div class="thumb-placeholder">Coming<br>Soon</div>
+      </div>
+      <div class="card-info">
+        <div class="card-name" style="color:rgba(200,168,75,0.3)">Coming Soon</div>
+        <div class="card-blurb" style="color:rgba(245,240,232,0.2)">Patience is its own reward. This one will be worth the wait.</div>
+        <div class="card-buttons">
+          <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
+          <button class="btn btn-store" disabled>App Store — Coming Soon</button>
+          <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
+          <div class="btn-divider"></div>
+          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support future apps</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 7 -->
+    <div class="card">
+      <div class="card-thumb coming-soon">
+        <div class="thumb-placeholder">Coming<br>Soon</div>
+      </div>
+      <div class="card-info">
+        <div class="card-name" style="color:rgba(200,168,75,0.3)">Coming Soon</div>
+        <div class="card-blurb" style="color:rgba(245,240,232,0.2)">Still taking shape. Check back soon — or support the work while you wait.</div>
+        <div class="card-buttons">
+          <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
+          <button class="btn btn-store" disabled>App Store — Coming Soon</button>
+          <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
+          <div class="btn-divider"></div>
+          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support future apps</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 8 -->
+    <div class="card">
+      <div class="card-thumb coming-soon">
+        <div class="thumb-placeholder">Coming<br>Soon</div>
+      </div>
+      <div class="card-info">
+        <div class="card-name" style="color:rgba(200,168,75,0.3)">Coming Soon</div>
+        <div class="card-blurb" style="color:rgba(245,240,232,0.2)">More to come. The best is yet ahead — and your support helps get it there.</div>
+        <div class="card-buttons">
+          <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
+          <button class="btn btn-store" disabled>App Store — Coming Soon</button>
+          <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
+          <div class="btn-divider"></div>
+          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support future apps</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 9 -->
+    <div class="card">
+      <div class="card-thumb coming-soon">
+        <div class="thumb-placeholder">Coming<br>Soon</div>
+      </div>
+      <div class="card-info">
+        <div class="card-name" style="color:rgba(200,168,75,0.3)">Coming Soon</div>
+        <div class="card-blurb" style="color:rgba(245,240,232,0.2)">Something is brewing. Good work takes the time it takes.</div>
+        <div class="card-buttons">
+          <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
+          <button class="btn btn-store" disabled>App Store — Coming Soon</button>
+          <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
+          <div class="btn-divider"></div>
+          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support future apps</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 10 -->
+    <div class="card">
+      <div class="card-thumb coming-soon">
+        <div class="thumb-placeholder">Coming<br>Soon</div>
+      </div>
+      <div class="card-info">
+        <div class="card-name" style="color:rgba(200,168,75,0.3)">Coming Soon</div>
+        <div class="card-blurb" style="color:rgba(245,240,232,0.2)">Not quite ready for the world yet. But getting there — one line of code at a time.</div>
+        <div class="card-buttons">
+          <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
+          <button class="btn btn-store" disabled>App Store — Coming Soon</button>
+          <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
+          <div class="btn-divider"></div>
+          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support future apps</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 11 -->
+    <div class="card">
+      <div class="card-thumb coming-soon">
+        <div class="thumb-placeholder">Coming<br>Soon</div>
+      </div>
+      <div class="card-info">
+        <div class="card-name" style="color:rgba(200,168,75,0.3)">Coming Soon</div>
+        <div class="card-blurb" style="color:rgba(245,240,232,0.2)">Almost. Nearly. Ere long — something worth your time will appear right here.</div>
+        <div class="card-buttons">
+          <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
+          <button class="btn btn-store" disabled>App Store — Coming Soon</button>
+          <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
+          <div class="btn-divider"></div>
+          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support future apps</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 12 -->
+    <div class="card">
+      <div class="card-thumb coming-soon">
+        <div class="thumb-placeholder">Coming<br>Soon</div>
+      </div>
+      <div class="card-info">
+        <div class="card-name" style="color:rgba(200,168,75,0.3)">Coming Soon</div>
+        <div class="card-blurb" style="color:rgba(245,240,232,0.2)">The last slot. For now. If you've scrolled this far, you clearly believe in what's being built here. Thank you.</div>
+        <div class="card-buttons">
+          <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
+          <button class="btn btn-store" disabled>App Store — Coming Soon</button>
+          <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
+          <div class="btn-divider"></div>
+          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support future apps</a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end cards grid -->
+
+  <footer class="site-footer">
+    <p>Terri's Tech &nbsp;·&nbsp; Built with care by one person &nbsp;·&nbsp; <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" target="_blank">Support the work</a></p>
+  </footer>
+
+</div><!-- end page -->
+
+</body>
+</html>
