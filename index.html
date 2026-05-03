@@ -163,6 +163,24 @@
     padding: 1rem;
   }
 
+  .thumb-placeholder.info-thumb {
+    flex-direction: column;
+    gap: 0.5rem;
+    color: rgba(200,168,75,0.45);
+  }
+
+  .thumb-placeholder.info-thumb .thumb-emoji {
+    font-size: 1.6rem;
+    letter-spacing: 0;
+    text-transform: none;
+    line-height: 1;
+  }
+
+  .thumb-placeholder.info-thumb .thumb-label {
+    font-size: 0.5rem;
+    letter-spacing: 0.2em;
+  }
+
   /* Card info */
   .card-info {
     flex: 1;
@@ -580,57 +598,45 @@
       </div>
     </div>
 
-    <!-- Card 10 -->
+    <!-- Card 10 — Add to Home Screen -->
     <div class="card">
-      <div class="card-thumb coming-soon">
-        <div class="thumb-placeholder">Coming<br>Soon</div>
+      <div class="card-thumb">
+        <div class="thumb-placeholder info-thumb">
+          <span class="thumb-emoji">📱</span>
+          <span class="thumb-label">Home Screen</span>
+        </div>
       </div>
       <div class="card-info">
-        <div class="card-name" style="color:rgba(200,168,75,0.3)">Coming Soon</div>
-        <div class="card-blurb" style="color:rgba(245,240,232,0.2)">Not quite ready for the world yet. But getting there — one line of code at a time.</div>
-        <div class="card-buttons">
-          <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
-          <button class="btn btn-store" disabled>App Store — Coming Soon</button>
-          <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
-          <div class="btn-divider"></div>
-          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support future apps</a>
-        </div>
+        <div class="card-name">Add to Home Screen</div>
+        <div class="card-blurb"><strong style="color:var(--cream)">iPhone / iPad:</strong> Open the app in Safari. Tap the Share button, scroll down, and tap <em>Add to Home Screen</em>. Tap <em>Add</em> to confirm.<br><br><strong style="color:var(--cream)">Android:</strong> Open the app in Chrome. Tap the three-dot menu and tap <em>Add to Home screen</em>. The app will appear on your home screen and open full-screen, without the browser bar.</div>
       </div>
     </div>
 
-    <!-- Card 11 -->
+    <!-- Card 11 — Add to PC -->
     <div class="card">
-      <div class="card-thumb coming-soon">
-        <div class="thumb-placeholder">Coming<br>Soon</div>
+      <div class="card-thumb">
+        <div class="thumb-placeholder info-thumb">
+          <span class="thumb-emoji">🖥️</span>
+          <span class="thumb-label">Add to PC</span>
+        </div>
       </div>
       <div class="card-info">
-        <div class="card-name" style="color:rgba(200,168,75,0.3)">Coming Soon</div>
-        <div class="card-blurb" style="color:rgba(245,240,232,0.2)">Almost. Nearly. Ere long — something worth your time will appear right here.</div>
-        <div class="card-buttons">
-          <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
-          <button class="btn btn-store" disabled>App Store — Coming Soon</button>
-          <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
-          <div class="btn-divider"></div>
-          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support future apps</a>
-        </div>
+        <div class="card-name">Add to PC</div>
+        <div class="card-blurb"><strong style="color:var(--cream)">Chrome or Edge:</strong> Open the app in your browser. Look for the install icon in the address bar — a small screen with a download arrow. Click it and select <em>Install</em>. The app opens in its own window and appears in your Start menu.<br><br><strong style="color:var(--cream)">Any browser:</strong> Right-click the tab and choose <em>Pin tab</em>, or drag the address bar URL to your desktop to create a shortcut.</div>
       </div>
     </div>
 
-    <!-- Card 12 -->
+    <!-- Card 12 — Protect Your Data -->
     <div class="card">
-      <div class="card-thumb coming-soon">
-        <div class="thumb-placeholder">Coming<br>Soon</div>
+      <div class="card-thumb">
+        <div class="thumb-placeholder info-thumb">
+          <span class="thumb-emoji">🔒</span>
+          <span class="thumb-label">Your Data</span>
+        </div>
       </div>
       <div class="card-info">
-        <div class="card-name" style="color:rgba(200,168,75,0.3)">Coming Soon</div>
-        <div class="card-blurb" style="color:rgba(245,240,232,0.2)">The last slot. For now. If you've scrolled this far, you clearly believe in what's being built here. Thank you.</div>
-        <div class="card-buttons">
-          <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
-          <button class="btn btn-store" disabled>App Store — Coming Soon</button>
-          <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
-          <div class="btn-divider"></div>
-          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support future apps</a>
-        </div>
+        <div class="card-name">Protect Your Data</div>
+        <div class="card-blurb">These are web-based apps. Your saved data — conversations, settings, countdowns, and preferences — is stored locally in your browser.<br><br><strong style="color:var(--cream)">Clearing your cookies or browser history will permanently erase everything.</strong> There is no account, no cloud backup, and no way to recover it. Avoid private or incognito mode, and do not clear site data for these apps.</div>
       </div>
     </div>
 
