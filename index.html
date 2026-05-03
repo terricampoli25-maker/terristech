@@ -260,6 +260,105 @@
     margin: 0.15rem 0;
   }
 
+  /* Info popup buttons row */
+  .info-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-info {
+    background: transparent;
+    border: 1px solid rgba(180,150,80,0.3);
+    color: rgba(200,168,75,0.7);
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.5rem 1.1rem;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-info:hover {
+    background: rgba(180,150,80,0.1);
+    border-color: var(--gold);
+    color: var(--gold-light);
+  }
+
+  /* Modal overlay */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .modal-overlay.open {
+    display: flex;
+  }
+
+  .modal {
+    background: rgba(18, 13, 7, 0.97);
+    border: 1px solid rgba(180,150,80,0.3);
+    border-radius: 4px;
+    max-width: 480px;
+    width: 100%;
+    padding: 2rem;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.8);
+    position: relative;
+  }
+
+  .modal-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    letter-spacing: 0.12em;
+    margin-bottom: 1.25rem;
+    text-transform: uppercase;
+  }
+
+  .modal-body {
+    font-family: 'Crimson Text', serif;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  .modal-body p + p {
+    margin-top: 0.85rem;
+  }
+
+  .modal-body strong {
+    color: var(--cream);
+    font-weight: 600;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.9rem;
+    background: none;
+    border: none;
+    color: rgba(245,240,232,0.3);
+    font-size: 1.1rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+  }
+
+  .modal-close:hover {
+    color: var(--gold);
+  }
+
   /* Footer */
   .site-footer {
     text-align: center;
@@ -292,6 +391,10 @@
       width: 110px;
       min-width: 110px;
     }
+    .info-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
   }
 </style>
 </head>
@@ -312,14 +415,14 @@
   <!-- Cards grid — 12 slots, 2 columns -->
   <div class="cards-grid">
 
-    <!-- Card 1 — Terri | Your Therapist (LIVE) -->
+    <!-- Card 1 — Therapy with Ave (LIVE) -->
     <div class="card">
       <div class="card-thumb">
-        <img src="thumb-therapist.jpg" alt="Terri | Your Therapist">
+        <img src="thumb-therapist.jpg" alt="Therapy with Ave">
       </div>
       <div class="card-info">
-        <div class="card-name">Terri | Your Therapist</div>
-        <div class="card-blurb">Terri listens, reflects, and always has a movie quote ready for the moment. Sassy, warm, and entirely her own woman — she'll tell you what she thinks, slip in a line from a film, and if you don't catch the reference, just ask her. She'll tell you where it's from.</div>
+        <div class="card-name">Therapy with Ave</div>
+        <div class="card-blurb">Ave has heard it all. Twice. She'll listen — not because she finds it particularly fascinating, but because that's technically the job. Dry, direct, and refreshingly unimpressed, she'll tell you exactly what she thinks. Not what you want to hear. What she actually thinks. 132 MB</div>
         <div class="card-price">Free</div>
         <div class="card-buttons">
           <a href="https://terri-therapist.terricampoli25.workers.dev/" class="btn btn-launch" target="_blank">Launch App</a>
@@ -350,7 +453,7 @@
       </div>
     </div>
 
-    <!-- Card 3 — Ere Long (LIVE) -->
+    <!-- Card 3 — Ere Long (Coming Soon) -->
     <div class="card">
       <div class="card-thumb">
         <img src="thumb-erelong.jpg" alt="Ere Long">
@@ -360,7 +463,7 @@
         <div class="card-blurb">Four countdowns, one feeling at a time. Whether you're awaiting something wonderful or dreading what's to come, Ere Long marks the days with evolving landscapes and audio that grows with the tension — quiet at first, undeniable by the end.</div>
         <div class="card-price">Free — Beta</div>
         <div class="card-buttons">
-          <a href="https://ere-long.terricampoli25.workers.dev/" class="btn btn-launch" target="_blank">Launch App</a>
+          <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
           <button class="btn btn-store" disabled>App Store — Coming Soon</button>
           <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
           <div class="btn-divider"></div>
@@ -369,14 +472,14 @@
       </div>
     </div>
 
-    <!-- Card 4 -->
+    <!-- Card 4 — Inflictor (Coming Soon) -->
     <div class="card">
       <div class="card-thumb coming-soon">
-        <div class="thumb-placeholder">Coming<br>Soon</div>
+        <img src="thumb-inflictor.png" alt="Inflictor">
       </div>
       <div class="card-info">
-        <div class="card-name" style="color:rgba(200,168,75,0.3)">Coming Soon</div>
-        <div class="card-blurb" style="color:rgba(245,240,232,0.2)">Another tool in progress. Good things take time — and we are time's subjects.</div>
+        <div class="card-name" style="color:rgba(200,168,75,0.6)">Inflictor</div>
+        <div class="card-blurb" style="color:rgba(245,240,232,0.4)">There are things that must be endured. Inflictor does not soften them — it bears witness. A reckoning delivered in shadow and sound, for those who have stopped flinching and started looking.</div>
         <div class="card-buttons">
           <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
           <button class="btn btn-store" disabled>App Store — Coming Soon</button>
@@ -533,11 +636,84 @@
 
   </div><!-- end cards grid -->
 
+  <!-- Info popup buttons -->
+  <div class="info-buttons">
+    <button class="btn-info" onclick="openModal('modal-homescreen')">Add to Home Screen</button>
+    <button class="btn-info" onclick="openModal('modal-pc')">Add to PC</button>
+    <button class="btn-info" onclick="openModal('modal-data')">Protect Your Data</button>
+  </div>
+
   <footer class="site-footer">
     <p>Terri's Tech &nbsp;·&nbsp; Built with care by one person &nbsp;·&nbsp; <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" target="_blank">Support the work</a></p>
   </footer>
 
 </div><!-- end page -->
+
+<!-- Modal: Add to Home Screen -->
+<div class="modal-overlay" id="modal-homescreen" onclick="closeModalOnOverlay(event, 'modal-homescreen')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-homescreen')">&#x2715;</button>
+    <div class="modal-title">Add to Home Screen</div>
+    <div class="modal-body">
+      <p><strong>iPhone / iPad (Safari)</strong><br>
+      Open the app in Safari. Tap the Share button at the bottom of the screen (the square with an arrow). Scroll down and tap <em>Add to Home Screen</em>. Give it a name and tap <em>Add</em>.</p>
+      <p><strong>Android (Chrome)</strong><br>
+      Open the app in Chrome. Tap the three-dot menu in the top right corner. Tap <em>Add to Home screen</em>. Confirm the name and tap <em>Add</em>.</p>
+      <p>The app will appear on your home screen like any other app and open full-screen, without the browser bar.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Add to PC -->
+<div class="modal-overlay" id="modal-pc" onclick="closeModalOnOverlay(event, 'modal-pc')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-pc')">&#x2715;</button>
+    <div class="modal-title">Add to PC</div>
+    <div class="modal-body">
+      <p><strong>Chrome or Edge</strong><br>
+      Open the app in your browser. Look for the install icon in the address bar — a small screen with a download arrow. Click it and select <em>Install</em>. The app will open in its own window and appear in your Start menu or taskbar.</p>
+      <p><strong>Pinning to taskbar (any browser)</strong><br>
+      Open the app, right-click the tab, and choose <em>Pin tab</em> to keep it always accessible. Or drag the address bar URL to your desktop to create a shortcut.</p>
+      <p>No download required — these are web apps that run entirely in your browser.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Protect Your Data -->
+<div class="modal-overlay" id="modal-data" onclick="closeModalOnOverlay(event, 'modal-data')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-data')">&#x2715;</button>
+    <div class="modal-title">Protect Your Data</div>
+    <div class="modal-body">
+      <p>These are web-based apps. Your saved data — conversations, settings, countdowns, and preferences — is stored locally in your browser using cookies and local storage.</p>
+      <p><strong>Clearing your browser history, cookies, or site data will permanently erase everything.</strong> There is no account, no cloud backup, and no way to recover it.</p>
+      <p>To keep your data safe: do not use private or incognito mode, avoid clearing cookies for these sites, and if you use multiple browsers or devices, be aware that data does not carry over between them.</p>
+      <p>If you want to preserve something important — a conversation, a reflection, a note — copy it somewhere you own before closing the app.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openModal(id) {
+    document.getElementById(id).classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(id) {
+    document.getElementById(id).classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function closeModalOnOverlay(e, id) {
+    if (e.target === e.currentTarget) closeModal(id);
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-overlay.open').forEach(function(el) {
+        el.classList.remove('open');
+      });
+      document.body.style.overflow = '';
+    }
+  });
+</script>
 
 </body>
 </html>
