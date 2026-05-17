@@ -259,22 +259,25 @@
 
   /* Feedback modal overlay */
   .fb-overlay {
-    display: none;
     position: fixed;
     inset: 0;
     background: rgba(0,0,0,0.7);
     backdrop-filter: blur(3px);
     z-index: 200;
+    display: flex;
     align-items: center;
     justify-content: center;
     padding: 1.5rem;
     opacity: 0;
-    transition: opacity 0.18s ease;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.18s ease, visibility 0.18s;
   }
 
   .fb-overlay.open {
-    display: flex;
     opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
   }
 
   .fb-panel {
@@ -975,10 +978,6 @@
   var closeBtn = document.getElementById('fb-close');
 
   function openFeedback() {
-    overlay.style.display = 'flex';
-    requestAnimationFrame(function() {
-      overlay.style.opacity = '1';
-    });
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
     setTimeout(function() { document.getElementById('fb-app').focus(); }, 50);
@@ -987,7 +986,6 @@
   function closeFeedback() {
     overlay.classList.remove('open');
     document.body.style.overflow = '';
-    document.getElementById('feedback-card').focus();
   }
 
   var feedbackCard = document.getElementById('feedback-card');
