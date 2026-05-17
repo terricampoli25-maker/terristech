@@ -247,6 +247,164 @@
     margin: 0.15rem 0;
   }
 
+  /* Feedback card */
+  .card-feedback {
+    cursor: pointer;
+  }
+
+  .card-feedback:focus {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+  }
+
+  /* Feedback modal overlay */
+  .fb-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(3px);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.18s ease;
+  }
+
+  .fb-overlay.open {
+    display: flex;
+    opacity: 1;
+  }
+
+  .fb-panel {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 4px;
+    backdrop-filter: blur(4px);
+    padding: 2rem;
+    width: 100%;
+    max-width: 520px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.8);
+  }
+
+  .fb-close {
+    position: absolute;
+    top: 0.8rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: rgba(245,240,232,0.35);
+    font-size: 1.1rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+    padding: 0.25rem;
+  }
+
+  .fb-close:hover { color: var(--gold); }
+
+  .fb-heading {
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+
+  .fb-subline {
+    font-family: 'Crimson Text', serif;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .fb-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .fb-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .fb-optional {
+    font-family: 'Crimson Text', serif;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  .fb-note {
+    font-family: 'Crimson Text', serif;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  .fb-input {
+    background: rgba(10,7,3,0.6);
+    border: 1px solid rgba(180,150,80,0.25);
+    border-radius: 2px;
+    color: var(--cream);
+    font-family: 'Crimson Text', serif;
+    font-size: 0.9rem;
+    padding: 0.45rem 0.6rem;
+    width: 100%;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    appearance: none;
+  }
+
+  .fb-input:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 2px rgba(200,168,75,0.2);
+  }
+
+  .fb-input option {
+    background: #1a1208;
+    color: var(--cream);
+  }
+
+  .fb-textarea {
+    resize: none;
+    overflow: hidden;
+    min-height: 90px;
+  }
+
+  .fb-error {
+    font-family: 'Crimson Text', serif;
+    font-size: 0.8rem;
+    color: #e07070;
+    min-height: 1em;
+  }
+
+  .fb-submit-error {
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  .fb-thanks {
+    font-family: 'Crimson Text', serif;
+    font-size: 1rem;
+    color: var(--gold-light);
+    text-align: center;
+    padding: 2rem 0;
+  }
+
+  /* Footer */
   .site-footer {
     text-align: center;
     margin-top: 4rem;
@@ -270,6 +428,7 @@
   @media (max-width: 700px) {
     .cards-grid { grid-template-columns: 1fr; }
     .card-thumb { width: 110px; min-width: 110px; }
+    .fb-panel { padding: 1.5rem; }
   }
 </style>
 </head>
@@ -292,7 +451,6 @@
       <div class="card-info">
         <div class="card-name">Therapy with Ave</div>
         <div class="card-blurb">Ave has heard it all. Twice. She'll listen — not because she finds it particularly fascinating, but because that's technically the job. Dry, direct, and refreshingly unimpressed, she'll tell you exactly what she thinks. Not what you want to hear. What she actually thinks. 132 MB</div>
-        <div class="card-price">Free</div>
         <div class="card-buttons">
           <a href="https://terri-therapist.terricampoli25.workers.dev/" class="btn btn-launch" target="_blank">Launch App</a>
           <button class="btn btn-store" disabled>App Store — Coming Soon</button>
@@ -303,7 +461,7 @@
       </div>
     </div>
 
-    <!-- Card 2 — The Measure (LIVE) -->
+    <!-- Card 2 — The Measure -->
     <div class="card">
       <div class="card-thumb">
         <img src="thumb-measure.jpg" alt="The Measure">
@@ -311,7 +469,6 @@
       <div class="card-info">
         <div class="card-name">The Measure</div>
         <div class="card-blurb">A gothic pocket watch timer, set against a candlelit library. Count up or down in elegant style — time, measured as it deserves to be. 114 MB</div>
-        <div class="card-price">Free — Beta</div>
         <div class="card-buttons">
           <a href="https://the-measure.terricampoli25.workers.dev/" class="btn btn-launch" target="_blank">Launch App</a>
           <button class="btn btn-store" disabled>App Store — Coming Soon</button>
@@ -322,7 +479,7 @@
       </div>
     </div>
 
-    <!-- Card 3 — Ere Long (Coming Soon) -->
+    <!-- Card 3 — Ere Long -->
     <div class="card">
       <div class="card-thumb">
         <img src="thumb-erelong.jpg" alt="Ere Long">
@@ -338,7 +495,7 @@
       </div>
     </div>
 
-    <!-- Card 4 — Inflictor (Coming Soon) -->
+    <!-- Card 4 — Inflictor -->
     <div class="card">
       <div class="card-thumb">
         <img src="thumb-inflictor.png" alt="Inflictor">
@@ -374,7 +531,7 @@
       </div>
     </div>
 
-    <!-- Card 6 — Parlami (Coming Soon) -->
+    <!-- Card 6 — Parlami -->
     <div class="card">
       <div class="card-thumb">
         <img src="thumb-italy.png" alt="Parlami">
@@ -392,7 +549,7 @@
       </div>
     </div>
 
-    <!-- Card 7 — Veritas (Coming Soon) -->
+    <!-- Card 7 — Veritas -->
     <div class="card">
       <div class="card-thumb">
         <img src="thumb-veritas.png" alt="Veritas">
@@ -410,7 +567,7 @@
       </div>
     </div>
 
-    <!-- Card 8 — Eros (Coming Soon) -->
+    <!-- Card 8 — Eros -->
     <div class="card">
       <div class="card-thumb">
         <img src="thumb-eros.png" alt="Eros">
@@ -428,7 +585,7 @@
       </div>
     </div>
 
-    <!-- Card 9 — Ave — Shakespeare's Oracle (Coming Soon) -->
+    <!-- Card 9 — Ave — Shakespeare's Oracle -->
     <div class="card">
       <div class="card-thumb">
         <img src="thumb-oracle.png" alt="Ave — Shakespeare's Oracle">
@@ -518,7 +675,147 @@
       </div>
     </div>
 
-    <!-- Card 14 — Add to Home Screen -->
+    <!-- Card 14 — Coming Soon -->
+    <div class="card">
+      <div class="card-thumb coming-soon">
+        <div class="thumb-placeholder">Coming<br>Soon</div>
+      </div>
+      <div class="card-info">
+        <div class="card-name" style="color:rgba(200,168,75,0.3)">Coming Soon</div>
+        <div class="card-blurb" style="color:rgba(245,240,232,0.2)">The workshop never sleeps. Something worth waiting for is on its way.</div>
+        <div class="card-buttons">
+          <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
+          <button class="btn btn-store" disabled>App Store — Coming Soon</button>
+          <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
+          <div class="btn-divider"></div>
+          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support future apps</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 15 — Coming Soon -->
+    <div class="card">
+      <div class="card-thumb coming-soon">
+        <div class="thumb-placeholder">Coming<br>Soon</div>
+      </div>
+      <div class="card-info">
+        <div class="card-name" style="color:rgba(200,168,75,0.3)">Coming Soon</div>
+        <div class="card-blurb" style="color:rgba(245,240,232,0.2)">Not quite ready for the world yet. But getting there — one line of code at a time.</div>
+        <div class="card-buttons">
+          <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
+          <button class="btn btn-store" disabled>App Store — Coming Soon</button>
+          <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
+          <div class="btn-divider"></div>
+          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support future apps</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 16 — Coming Soon -->
+    <div class="card">
+      <div class="card-thumb coming-soon">
+        <div class="thumb-placeholder">Coming<br>Soon</div>
+      </div>
+      <div class="card-info">
+        <div class="card-name" style="color:rgba(200,168,75,0.3)">Coming Soon</div>
+        <div class="card-blurb" style="color:rgba(245,240,232,0.2)">Almost. Nearly. Ere long — something worth your time will appear right here.</div>
+        <div class="card-buttons">
+          <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
+          <button class="btn btn-store" disabled>App Store — Coming Soon</button>
+          <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
+          <div class="btn-divider"></div>
+          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support future apps</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 17 — Coming Soon -->
+    <div class="card">
+      <div class="card-thumb coming-soon">
+        <div class="thumb-placeholder">Coming<br>Soon</div>
+      </div>
+      <div class="card-info">
+        <div class="card-name" style="color:rgba(200,168,75,0.3)">Coming Soon</div>
+        <div class="card-blurb" style="color:rgba(245,240,232,0.2)">Something new is taking shape in the workshop. Check back ere long.</div>
+        <div class="card-buttons">
+          <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
+          <button class="btn btn-store" disabled>App Store — Coming Soon</button>
+          <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
+          <div class="btn-divider"></div>
+          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support future apps</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 18 — Coming Soon -->
+    <div class="card">
+      <div class="card-thumb coming-soon">
+        <div class="thumb-placeholder">Coming<br>Soon</div>
+      </div>
+      <div class="card-info">
+        <div class="card-name" style="color:rgba(200,168,75,0.3)">Coming Soon</div>
+        <div class="card-blurb" style="color:rgba(245,240,232,0.2)">The last to arrive is often the one most worth waiting for.</div>
+        <div class="card-buttons">
+          <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
+          <button class="btn btn-store" disabled>App Store — Coming Soon</button>
+          <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
+          <div class="btn-divider"></div>
+          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support future apps</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 19 — Coming Soon -->
+    <div class="card">
+      <div class="card-thumb coming-soon">
+        <div class="thumb-placeholder">Coming<br>Soon</div>
+      </div>
+      <div class="card-info">
+        <div class="card-name" style="color:rgba(200,168,75,0.3)">Coming Soon</div>
+        <div class="card-blurb" style="color:rgba(245,240,232,0.2)">Still in the making. Support the work while you wait.</div>
+        <div class="card-buttons">
+          <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
+          <button class="btn btn-store" disabled>App Store — Coming Soon</button>
+          <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
+          <div class="btn-divider"></div>
+          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support future apps</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 20 — Coming Soon -->
+    <div class="card">
+      <div class="card-thumb coming-soon">
+        <div class="thumb-placeholder">Coming<br>Soon</div>
+      </div>
+      <div class="card-info">
+        <div class="card-name" style="color:rgba(200,168,75,0.3)">Coming Soon</div>
+        <div class="card-blurb" style="color:rgba(245,240,232,0.2)">Something is gathering in the dark. Good things take the time they take.</div>
+        <div class="card-buttons">
+          <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
+          <button class="btn btn-store" disabled>App Store — Coming Soon</button>
+          <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
+          <div class="btn-divider"></div>
+          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support future apps</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 21 — Share Feedback -->
+    <div class="card card-feedback" id="feedback-card" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Share Feedback — open feedback form">
+      <div class="card-thumb">
+        <div class="thumb-placeholder info-thumb">
+          <span class="thumb-emoji">✉️</span>
+          <span class="thumb-label">Feedback</span>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-name">Share Feedback</div>
+        <div class="card-blurb">Help shape the next version of these apps — your input goes straight to my inbox.</div>
+      </div>
+    </div>
+
+    <!-- Card 22 — Add to Home Screen -->
     <div class="card">
       <div class="card-thumb">
         <div class="thumb-placeholder info-thumb">
@@ -532,7 +829,7 @@
       </div>
     </div>
 
-    <!-- Card 15 — Add to PC -->
+    <!-- Card 23 — Add to PC -->
     <div class="card">
       <div class="card-thumb">
         <div class="thumb-placeholder info-thumb">
@@ -546,7 +843,7 @@
       </div>
     </div>
 
-    <!-- Card 16 — The Truth About Cyberstalking (PDF) -->
+    <!-- Card 24 — The Truth About Cyberstalking (PDF) -->
     <div class="card">
       <div class="card-thumb">
         <img src="scard.png" alt="The Truth About Cyberstalking">
@@ -554,14 +851,13 @@
       <div class="card-info">
         <div class="card-name">The Truth About Cyberstalking</div>
         <div class="card-blurb">A comprehensive resource on technology-facilitated stalking — how it works, how it hides, who it targets, and what you can do. Statistics, technical detail, legal frameworks, and worldwide resources.</div>
-        <div class="card-price">Free</div>
         <div class="card-buttons">
           <a href="https://cyberstalking.terricampoli25.workers.dev/" class="btn btn-launch" target="_blank">Launch PDF</a>
         </div>
       </div>
     </div>
 
-    <!-- Card 16 — Protect Your Data -->
+    <!-- Card 25 — Protect Your Data -->
     <div class="card">
       <div class="card-thumb">
         <div class="thumb-placeholder info-thumb">
@@ -575,7 +871,7 @@
       </div>
     </div>
 
-    <!-- Card 17 — Privacy & Transparency -->
+    <!-- Card 26 — Privacy & Transparency -->
     <div class="card">
       <div class="card-thumb">
         <div class="thumb-placeholder info-thumb">
@@ -597,6 +893,183 @@
   </footer>
 
 </div><!-- end page -->
+
+<!-- Feedback modal -->
+<div class="fb-overlay" id="feedback-modal" role="dialog" aria-modal="true" aria-labelledby="fb-title">
+  <div class="fb-panel" id="fb-panel">
+    <button class="fb-close" id="fb-close" aria-label="Close feedback form">&#x2715;</button>
+    <h2 class="fb-heading" id="fb-title">Share Feedback</h2>
+    <p class="fb-subline">Tell me what's working and what's not.</p>
+    <form id="fb-form" novalidate>
+      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">
+
+      <div class="fb-field">
+        <label class="fb-label" for="fb-app">Which app?</label>
+        <select id="fb-app" name="app" required class="fb-input"></select>
+        <span class="fb-error" id="fb-app-error" role="alert"></span>
+      </div>
+
+      <div class="fb-field">
+        <label class="fb-label" for="fb-feedback">Your feedback</label>
+        <textarea id="fb-feedback" name="feedback" required class="fb-input fb-textarea" placeholder="What's working, what's not, what you'd like to see next."></textarea>
+        <span class="fb-error" id="fb-feedback-error" role="alert"></span>
+      </div>
+
+      <div class="fb-field">
+        <label class="fb-label" for="fb-name">Your name <span class="fb-optional">(optional)</span></label>
+        <input type="text" id="fb-name" name="name" class="fb-input" autocomplete="name">
+      </div>
+
+      <div class="fb-field">
+        <label class="fb-label" for="fb-email">Your email <span class="fb-optional">(optional)</span></label>
+        <span class="fb-note">Only if you'd like a reply.</span>
+        <input type="email" id="fb-email" name="email" class="fb-input" autocomplete="email">
+        <span class="fb-error" id="fb-email-error" role="alert"></span>
+      </div>
+
+      <span class="fb-error fb-submit-error" id="fb-submit-error" role="alert"></span>
+      <button type="submit" class="btn btn-launch" id="fb-submit">Send feedback</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  var APP_LIST = [
+    'Therapy with Ave',
+    'The Measure',
+    'Ere Long',
+    'Ave\'s Garden Tips',
+    'Inflictor',
+    'Parlami',
+    'Veritas',
+    'Eros',
+    'Ave — Shakespeare\'s Oracle',
+    'Thine',
+    'Sweet Airs',
+    'The Gallery',
+    'The Physic',
+    'Soliloquy',
+    'Rouse',
+    'Resolve',
+    'Necessaries & Sundries',
+    'Fare',
+    'Dramatis Personae',
+    'Other'
+  ];
+
+  (function() {
+    var sel = document.getElementById('fb-app');
+    var ph = document.createElement('option');
+    ph.value = ''; ph.textContent = '— Select an app —';
+    ph.disabled = true; ph.selected = true;
+    sel.appendChild(ph);
+    APP_LIST.forEach(function(name) {
+      var opt = document.createElement('option');
+      opt.value = name; opt.textContent = name;
+      sel.appendChild(opt);
+    });
+  })();
+
+  var overlay = document.getElementById('feedback-modal');
+  var panel   = document.getElementById('fb-panel');
+  var closeBtn = document.getElementById('fb-close');
+
+  function openFeedback() {
+    overlay.style.display = 'flex';
+    requestAnimationFrame(function() {
+      overlay.style.opacity = '1';
+    });
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(function() { document.getElementById('fb-app').focus(); }, 50);
+  }
+
+  function closeFeedback() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+    document.getElementById('feedback-card').focus();
+  }
+
+  var feedbackCard = document.getElementById('feedback-card');
+  feedbackCard.addEventListener('click', openFeedback);
+  feedbackCard.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openFeedback(); }
+  });
+
+  closeBtn.addEventListener('click', closeFeedback);
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) closeFeedback();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) closeFeedback();
+  });
+
+  overlay.addEventListener('keydown', function(e) {
+    if (!overlay.classList.contains('open') || e.key !== 'Tab') return;
+    var focusable = Array.prototype.slice.call(
+      panel.querySelectorAll('button, input:not([tabindex="-1"]), select, textarea')
+    ).filter(function(el) { return !el.disabled && el.offsetParent !== null; });
+    if (!focusable.length) return;
+    var first = focusable[0], last = focusable[focusable.length - 1];
+    if (e.shiftKey) {
+      if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+    } else {
+      if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+
+  function showError(id, msg) {
+    var el = document.getElementById(id);
+    if (el) el.textContent = msg;
+  }
+
+  function clearErrors() {
+    document.querySelectorAll('.fb-error').forEach(function(el) { el.textContent = ''; });
+  }
+
+  document.getElementById('fb-feedback').addEventListener('input', function() {
+    this.style.height = 'auto';
+    this.style.height = this.scrollHeight + 'px';
+  });
+
+  document.getElementById('fb-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    clearErrors();
+
+    var app      = document.getElementById('fb-app').value;
+    var feedback = document.getElementById('fb-feedback').value.trim();
+    var name     = document.getElementById('fb-name').value.trim();
+    var email    = document.getElementById('fb-email').value.trim();
+    var website  = document.querySelector('[name="website"]').value;
+    var submit   = document.getElementById('fb-submit');
+    var valid    = true;
+
+    if (!app)              { showError('fb-app-error',      'Please select an app.');                     valid = false; }
+    if (feedback.length < 10) { showError('fb-feedback-error', 'Please enter at least 10 characters.'); valid = false; }
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showError('fb-email-error', 'Please enter a valid email address.'); valid = false; }
+    if (!valid) return;
+
+    submit.disabled = true;
+    submit.textContent = 'Sending…';
+
+    fetch('/api/feedback', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ app: app, feedback: feedback, name: name, email: email, website: website })
+    })
+    .then(function(res) {
+      if (!res.ok) throw new Error('error');
+      var form = document.getElementById('fb-form');
+      form.innerHTML = '<p class="fb-thanks">Thanks. Your feedback landed in my inbox.</p>';
+      setTimeout(closeFeedback, 2500);
+    })
+    .catch(function() {
+      submit.disabled = false;
+      submit.textContent = 'Send feedback';
+      showError('fb-submit-error', 'Couldn’t send right now. Please try again in a moment.');
+    });
+  });
+</script>
 
 </body>
 </html>
