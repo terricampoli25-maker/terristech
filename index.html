@@ -91,11 +91,14 @@
   .card-thumb {
     width: 130px;
     min-width: 130px;
+    min-height: 195px;
     position: relative;
     overflow: hidden;
   }
 
   .card-thumb img {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -178,6 +181,32 @@
     line-height: 1.4;
     flex: 1;
   }
+
+  .blurb-inner {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .btn-read-more {
+    background: none;
+    border: none;
+    color: var(--gold);
+    font-family: 'Crimson Text', serif;
+    font-size: 0.78rem;
+    font-style: italic;
+    cursor: pointer;
+    padding: 0.15rem 0;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+    display: block;
+    text-align: left;
+  }
+
+  .btn-read-more:hover { opacity: 1; }
 
   .card-price {
     font-family: 'Cinzel', serif;
@@ -407,6 +436,22 @@
     padding: 2rem 0;
   }
 
+  .blurb-modal-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+
+  .blurb-modal-text {
+    font-family: 'Crimson Text', serif;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+  }
+
   /* Footer */
   .site-footer {
     text-align: center;
@@ -453,13 +498,11 @@
       </div>
       <div class="card-info">
         <div class="card-name">Therapy with Ave</div>
-        <div class="card-blurb">Ave has heard it all. Twice. She'll listen — not because she finds it particularly fascinating, but because that's technically the job. Dry, direct, and refreshingly unimpressed, she'll tell you exactly what she thinks. Not what you want to hear. What she actually thinks. 132 MB</div>
+        <div class="card-blurb"><span class="blurb-inner">Ave has heard it all. Twice. She'll listen — not because she finds it particularly fascinating, but because that's technically the job. Dry, direct, and refreshingly unimpressed, she'll tell you exactly what she thinks. Not what you want to hear. What she actually thinks. 132 MB</span></div>
         <div class="card-buttons">
           <a href="https://terri-therapist.terricampoli25.workers.dev/" class="btn btn-launch" target="_blank">Launch App</a>
           <button class="btn btn-store" disabled>App Store — Coming Soon</button>
           <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
-          <div class="btn-divider"></div>
-          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support this app</a>
         </div>
       </div>
     </div>
@@ -471,13 +514,11 @@
       </div>
       <div class="card-info">
         <div class="card-name">The Measure</div>
-        <div class="card-blurb">A gothic pocket watch timer, set against a candlelit library. Count up or down in elegant style — time, measured as it deserves to be. 114 MB</div>
+        <div class="card-blurb"><span class="blurb-inner">A gothic pocket watch timer, set against a candlelit library. Count up or down in elegant style — time, measured as it deserves to be. 114 MB</span></div>
         <div class="card-buttons">
           <a href="https://the-measure.terricampoli25.workers.dev/" class="btn btn-launch" target="_blank">Launch App</a>
           <button class="btn btn-store" disabled>App Store — Coming Soon</button>
           <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
-          <div class="btn-divider"></div>
-          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support this app</a>
         </div>
       </div>
     </div>
@@ -489,7 +530,7 @@
       </div>
       <div class="card-info">
         <div class="card-name">Ere Long</div>
-        <div class="card-blurb">Four countdowns, one feeling at a time. Whether you're awaiting something wonderful or dreading what's to come, Ere Long marks the days with evolving landscapes and audio that grows with the tension — quiet at first, undeniable by the end. 112 MB</div>
+        <div class="card-blurb"><span class="blurb-inner">Four countdowns, one feeling at a time. Whether you're awaiting something wonderful or dreading what's to come, Ere Long marks the days with evolving landscapes and audio that grows with the tension — quiet at first, undeniable by the end. 112 MB</span></div>
         <div class="card-buttons">
           <a href="https://buy.stripe.com/fZu5kE2tS81XaMA8AC4Ni01" class="btn btn-launch" target="_blank">Download App — $6.00</a>
           <button class="btn btn-store" disabled>App Store — Coming Soon</button>
@@ -505,13 +546,11 @@
       </div>
       <div class="card-info">
         <div class="card-name" style="color:rgba(200,168,75,0.6)">Inflictor</div>
-        <div class="card-blurb" style="color:rgba(245,240,232,0.4)">I built this app for myself because I am someone who needs structure to get the most out of my days. I do not have a regular job with set hours, or really anywhere I have to be. So, to keep myself highly productive I literally "inflict" structure on my days, hence the name Inflictor. I believe an app like this could actually help anyone suffering from the same affliction I was — a lack of structure. 133 MB</div>
+        <div class="card-blurb" style="color:rgba(245,240,232,0.4)"><span class="blurb-inner">I built this app for myself because I am someone who needs structure to get the most out of my days. I do not have a regular job with set hours, or really anywhere I have to be. So, to keep myself highly productive I literally "inflict" structure on my days, hence the name Inflictor. I believe an app like this could actually help anyone suffering from the same affliction I was — a lack of structure. 133 MB</span></div>
         <div class="card-buttons">
           <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
           <button class="btn btn-store" disabled>App Store — Coming Soon</button>
           <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
-          <div class="btn-divider"></div>
-          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support future apps</a>
         </div>
       </div>
     </div>
@@ -523,13 +562,11 @@
       </div>
       <div class="card-info">
         <div class="card-name">Ave's Garden Tips</div>
-        <div class="card-blurb">Meet Ave, your no-nonsense garden companion. Catch her before the afternoon wine kicks in for straightforward, practical gardening advice that actually helps your plants thrive. 13.6 MB</div>
+        <div class="card-blurb"><span class="blurb-inner">Meet Ave, your no-nonsense garden companion. Catch her before the afternoon wine kicks in for straightforward, practical gardening advice that actually helps your plants thrive. 13.6 MB</span></div>
         <div class="card-buttons">
           <a href="https://avegarden.terricampoli25.workers.dev/" class="btn btn-launch" target="_blank">Launch App</a>
           <button class="btn btn-store" disabled>App Store — Coming Soon</button>
           <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
-          <div class="btn-divider"></div>
-          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support this app</a>
         </div>
       </div>
     </div>
@@ -541,13 +578,11 @@
       </div>
       <div class="card-info">
         <div class="card-name">Parlami</div>
-        <div class="card-blurb">Italian phrases deserve to be savored. Like wine. Like music. Parlami translates English to Italian and back — smoothly, so you can focus on what matters. The moment. 10.2 MB</div>
+        <div class="card-blurb"><span class="blurb-inner">Italian phrases deserve to be savored. Like wine. Like music. Parlami translates English to Italian and back — smoothly, so you can focus on what matters. The moment. 10.2 MB</span></div>
         <div class="card-buttons">
           <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
           <button class="btn btn-store" disabled>App Store — Coming Soon</button>
           <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
-          <div class="btn-divider"></div>
-          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support future apps</a>
         </div>
       </div>
     </div>
@@ -559,13 +594,11 @@
       </div>
       <div class="card-info">
         <div class="card-name">Veritas</div>
-        <div class="card-blurb">The world's greatest minds, distilled. Veritas serves up philosophy quotes worth sitting with — for the moments you need perspective more than answers. 11.2 MB</div>
+        <div class="card-blurb"><span class="blurb-inner">The world's greatest minds, distilled. Veritas serves up philosophy quotes worth sitting with — for the moments you need perspective more than answers. 11.2 MB</span></div>
         <div class="card-buttons">
           <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
           <button class="btn btn-store" disabled>App Store — Coming Soon</button>
           <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
-          <div class="btn-divider"></div>
-          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support future apps</a>
         </div>
       </div>
     </div>
@@ -577,13 +610,11 @@
       </div>
       <div class="card-info">
         <div class="card-name">Eros</div>
-        <div class="card-blurb">The right words make everything more beautiful. Eros serves up romantic poetry from the world's greatest voices — passionate, tender, timeless. 11.1 MB</div>
+        <div class="card-blurb"><span class="blurb-inner">The right words make everything more beautiful. Eros serves up romantic poetry from the world's greatest voices — passionate, tender, timeless. 11.1 MB</span></div>
         <div class="card-buttons">
           <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
           <button class="btn btn-store" disabled>App Store — Coming Soon</button>
           <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
-          <div class="btn-divider"></div>
-          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support future apps</a>
         </div>
       </div>
     </div>
@@ -595,13 +626,11 @@
       </div>
       <div class="card-info">
         <div class="card-name">Ave — Shakespeare's Oracle</div>
-        <div class="card-blurb">The most beautiful words ever written, delivered by a woman who knows them all by heart. Ave — Shakespeare's Oracle. 12.6 MB</div>
+        <div class="card-blurb"><span class="blurb-inner">The most beautiful words ever written, delivered by a woman who knows them all by heart. Ave — Shakespeare's Oracle. 12.6 MB</span></div>
         <div class="card-buttons">
           <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
           <button class="btn btn-store" disabled>App Store — Coming Soon</button>
           <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
-          <div class="btn-divider"></div>
-          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support future apps</a>
         </div>
       </div>
     </div>
@@ -613,13 +642,11 @@
       </div>
       <div class="card-info">
         <div class="card-name" style="color:rgba(200,168,75,0.6)">Sweet Airs</div>
-        <div class="card-blurb" style="color:rgba(245,240,232,0.4)">Rain on the windowpane, distant thunder, the soft chime of bells. The sounds that settle you, paired with pictures that suit the mood. Add your own if mine don't fit. 352 MB</div>
+        <div class="card-blurb" style="color:rgba(245,240,232,0.4)"><span class="blurb-inner">Rain on the windowpane, distant thunder, the soft chime of bells. The sounds that settle you, paired with pictures that suit the mood. Add your own if mine don't fit. 352 MB</span></div>
         <div class="card-buttons">
           <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
           <button class="btn btn-store" disabled>App Store — Coming Soon</button>
           <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
-          <div class="btn-divider"></div>
-          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support future apps</a>
         </div>
       </div>
     </div>
@@ -631,13 +658,11 @@
       </div>
       <div class="card-info">
         <div class="card-name" style="color:rgba(200,168,75,0.6)">The Gallery</div>
-        <div class="card-blurb" style="color:rgba(245,240,232,0.4)">The Gallery is a virtual photo album for all your favorites. Custom cover and pages. 56 MB</div>
+        <div class="card-blurb" style="color:rgba(245,240,232,0.4)"><span class="blurb-inner">The Gallery is a virtual photo album for all your favorites. Custom cover and pages. 56 MB</span></div>
         <div class="card-buttons">
           <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
           <button class="btn btn-store" disabled>App Store — Coming Soon</button>
           <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
-          <div class="btn-divider"></div>
-          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support future apps</a>
         </div>
       </div>
     </div>
@@ -649,13 +674,11 @@
       </div>
       <div class="card-info">
         <div class="card-name" style="color:rgba(200,168,75,0.6)">The Physic</div>
-        <div class="card-blurb" style="color:rgba(245,240,232,0.4)">A medication tracker that, among other things, notifies you when it's time to take your medication and also reminds you when it's time to get a refill. 10 MB</div>
+        <div class="card-blurb" style="color:rgba(245,240,232,0.4)"><span class="blurb-inner">A medication tracker that, among other things, notifies you when it's time to take your medication and also reminds you when it's time to get a refill. 10 MB</span></div>
         <div class="card-buttons">
           <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
           <button class="btn btn-store" disabled>App Store — Coming Soon</button>
           <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
-          <div class="btn-divider"></div>
-          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support future apps</a>
         </div>
       </div>
     </div>
@@ -667,13 +690,11 @@
       </div>
       <div class="card-info">
         <div class="card-name" style="color:rgba(200,168,75,0.6)">Soliloquy</div>
-        <div class="card-blurb" style="color:rgba(245,240,232,0.4)">A daily journal for the passing thoughts and the lasting ones. Quick notes, long reflections, or anything between. Yours, whatever shape it takes. 54 MB</div>
+        <div class="card-blurb" style="color:rgba(245,240,232,0.4)"><span class="blurb-inner">A daily journal for the passing thoughts and the lasting ones. Quick notes, long reflections, or anything between. Yours, whatever shape it takes. 54 MB</span></div>
         <div class="card-buttons">
           <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
           <button class="btn btn-store" disabled>App Store — Coming Soon</button>
           <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
-          <div class="btn-divider"></div>
-          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support future apps</a>
         </div>
       </div>
     </div>
@@ -685,13 +706,11 @@
       </div>
       <div class="card-info">
         <div class="card-name" style="color:rgba(200,168,75,0.6)">Rouse</div>
-        <div class="card-blurb" style="color:rgba(245,240,232,0.4)">A bell to wake you. Simple as that — but rung well, and impossible to ignore.</div>
+        <div class="card-blurb" style="color:rgba(245,240,232,0.4)"><span class="blurb-inner">A bell to wake you. Simple as that — but rung well, and impossible to ignore.</span></div>
         <div class="card-buttons">
           <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
           <button class="btn btn-store" disabled>App Store — Coming Soon</button>
           <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
-          <div class="btn-divider"></div>
-          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support future apps</a>
         </div>
       </div>
     </div>
@@ -703,13 +722,11 @@
       </div>
       <div class="card-info">
         <div class="card-name" style="color:rgba(200,168,75,0.6)">Resolve</div>
-        <div class="card-blurb" style="color:rgba(245,240,232,0.4)">A habit tracker for those serious about keeping up their routines. Sound effects as you mark an activity completed or incomplete. I built this app for myself and it became my Harvard CS50 finale project. I hope others find it as helpful as I have. 10 MB</div>
+        <div class="card-blurb" style="color:rgba(245,240,232,0.4)"><span class="blurb-inner">A habit tracker for those serious about keeping up their routines. Sound effects as you mark an activity completed or incomplete. I built this app for myself and it became my Harvard CS50 finale project. I hope others find it as helpful as I have. 10 MB</span></div>
         <div class="card-buttons">
           <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
           <button class="btn btn-store" disabled>App Store — Coming Soon</button>
           <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
-          <div class="btn-divider"></div>
-          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support future apps</a>
         </div>
       </div>
     </div>
@@ -721,13 +738,11 @@
       </div>
       <div class="card-info">
         <div class="card-name" style="color:rgba(200,168,75,0.6)">Necessaries &amp; Sundries</div>
-        <div class="card-blurb" style="color:rgba(245,240,232,0.4)">A shopping list app that lets you separate your needed items into departments, categories, and more. Printable, or add the app to your device home screen. 8 MB</div>
+        <div class="card-blurb" style="color:rgba(245,240,232,0.4)"><span class="blurb-inner">A shopping list app that lets you separate your needed items into departments, categories, and more. Printable, or add the app to your device home screen. 8 MB</span></div>
         <div class="card-buttons">
           <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
           <button class="btn btn-store" disabled>App Store — Coming Soon</button>
           <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
-          <div class="btn-divider"></div>
-          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support future apps</a>
         </div>
       </div>
     </div>
@@ -739,13 +754,11 @@
       </div>
       <div class="card-info">
         <div class="card-name" style="color:rgba(200,168,75,0.6)">Fare</div>
-        <div class="card-blurb" style="color:rgba(245,240,232,0.4)">Search recipes by the ingredients you have, or pick a recipe and get its ingredient list. Cook with what's there, or plan what to buy. 11 MB</div>
+        <div class="card-blurb" style="color:rgba(245,240,232,0.4)"><span class="blurb-inner">Search recipes by the ingredients you have, or pick a recipe and get its ingredient list. Cook with what's there, or plan what to buy. 11 MB</span></div>
         <div class="card-buttons">
           <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
           <button class="btn btn-store" disabled>App Store — Coming Soon</button>
           <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
-          <div class="btn-divider"></div>
-          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support future apps</a>
         </div>
       </div>
     </div>
@@ -757,13 +770,11 @@
       </div>
       <div class="card-info">
         <div class="card-name" style="color:rgba(200,168,75,0.6)">Dramatis Personae</div>
-        <div class="card-blurb" style="color:rgba(245,240,232,0.4)">For the cast of characters in your life. Save addresses, contact numbers, significant dates, and add a memo for each contact. 160 MB</div>
+        <div class="card-blurb" style="color:rgba(245,240,232,0.4)"><span class="blurb-inner">For the cast of characters in your life. Save addresses, contact numbers, significant dates, and add a memo for each contact. 160 MB</span></div>
         <div class="card-buttons">
           <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
           <button class="btn btn-store" disabled>App Store — Coming Soon</button>
           <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
-          <div class="btn-divider"></div>
-          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support future apps</a>
         </div>
       </div>
     </div>
@@ -775,31 +786,25 @@
       </div>
       <div class="card-info">
         <div class="card-name" style="color:rgba(200,168,75,0.6)">Thine</div>
-        <div class="card-blurb" style="color:rgba(245,240,232,0.4)">A wellness suite of apps designed to help you manage your habits, schedule, and tasks, among other things. It is software that not only functions on your PC but also syncs with its mobile companion apps via its dashboard. Keep an eye on this space for a more detailed description as I finalize Thine's functions. TBD MB</div>
+        <div class="card-blurb" style="color:rgba(245,240,232,0.4)"><span class="blurb-inner">A wellness suite of apps designed to help you manage your habits, schedule, and tasks, among other things. It is software that not only functions on your PC but also syncs with its mobile companion apps via its dashboard. Keep an eye on this space for a more detailed description as I finalize Thine's functions. TBD MB</span></div>
         <div class="card-buttons">
           <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
           <button class="btn btn-store" disabled>App Store — Coming Soon</button>
           <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
-          <div class="btn-divider"></div>
-          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support future apps</a>
         </div>
       </div>
     </div>
 
     <!-- Card 20 — Coming Soon -->
     <div class="card">
-      <div class="card-thumb coming-soon">
-        <div class="thumb-placeholder">Coming<br>Soon</div>
+      <div class="card-thumb">
+        <img src="thumb-indie.png" alt="Coming Soon">
       </div>
       <div class="card-info">
-        <div class="card-name" style="color:rgba(200,168,75,0.3)">Coming Soon</div>
-        <div class="card-blurb" style="color:rgba(245,240,232,0.2)">Something is gathering in the dark. Good things take the time they take.</div>
+        <div class="card-name" style="color:rgba(200,168,75,0.6)">Indie Dev.</div>
+        <div class="card-blurb"><span class="blurb-inner">I am a recent Harvard CS50 graduate and indie developer. Because I do not run ads or collect and sell data, all of my dev. expenses are out of pocket. If you enjoyed my work and if you'd like to support future app. development, donations are always appreciated.</span></div>
         <div class="card-buttons">
-          <button class="btn btn-store" disabled>Launch App — Coming Soon</button>
-          <button class="btn btn-store" disabled>App Store — Coming Soon</button>
-          <button class="btn btn-store" disabled>Google Play — Coming Soon</button>
-          <div class="btn-divider"></div>
-          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn btn-donate" target="_blank">♥ Support future apps</a>
+          <a href="https://buy.stripe.com/14AaEY4C04PLg6U3gi4Ni00" class="btn" target="_blank" style="background:var(--gold);color:#1a1208;border:1px solid var(--gold-light);font-weight:600;padding:1.4rem 0.5rem;font-size:1rem;">Donate Now</a>
         </div>
       </div>
     </div>
@@ -814,7 +819,7 @@
       </div>
       <div class="card-info">
         <div class="card-name">Share Feedback</div>
-        <div class="card-blurb">Help shape the next version of these apps — your input goes straight to my inbox.</div>
+        <div class="card-blurb"><span class="blurb-inner">Help shape the next version of these apps — your input goes straight to my inbox.</span></div>
       </div>
     </div>
 
@@ -828,7 +833,7 @@
       </div>
       <div class="card-info">
         <div class="card-name">Add to Home Screen</div>
-        <div class="card-blurb"><strong style="color:var(--cream)">iPhone / iPad:</strong> Open the app in Safari. Tap the Share button, scroll down, and tap <em>Add to Home Screen</em>. Tap <em>Add</em> to confirm.<br><br><strong style="color:var(--cream)">Android:</strong> Open the app in Chrome. Tap the three-dot menu and tap <em>Add to Home screen</em>. The app will appear on your home screen and open full-screen, without the browser bar.</div>
+        <div class="card-blurb"><span class="blurb-inner"><strong style="color:var(--cream)">iPhone / iPad:</strong> Open the app in Safari. Tap the Share button, scroll down, and tap <em>Add to Home Screen</em>. Tap <em>Add</em> to confirm.<br><br><strong style="color:var(--cream)">Android:</strong> Open the app in Chrome. Tap the three-dot menu and tap <em>Add to Home screen</em>. The app will appear on your home screen and open full-screen, without the browser bar.</span></div>
       </div>
     </div>
 
@@ -842,7 +847,7 @@
       </div>
       <div class="card-info">
         <div class="card-name">Add to PC</div>
-        <div class="card-blurb"><strong style="color:var(--cream)">Chrome or Edge:</strong> Open the app in your browser. Look for the install icon in the address bar — a small screen with a download arrow. Click it and select <em>Install</em>. The app opens in its own window and appears in your Start menu.<br><br><strong style="color:var(--cream)">Any browser:</strong> Right-click the tab and choose <em>Pin tab</em>, or drag the address bar URL to your desktop to create a shortcut.</div>
+        <div class="card-blurb"><span class="blurb-inner"><strong style="color:var(--cream)">Chrome or Edge:</strong> Open the app in your browser. Look for the install icon in the address bar — a small screen with a download arrow. Click it and select <em>Install</em>. The app opens in its own window and appears in your Start menu.<br><br><strong style="color:var(--cream)">Any browser:</strong> Right-click the tab and choose <em>Pin tab</em>, or drag the address bar URL to your desktop to create a shortcut.</span></div>
       </div>
     </div>
 
@@ -853,7 +858,7 @@
       </div>
       <div class="card-info">
         <div class="card-name">The Truth About Cyberstalking</div>
-        <div class="card-blurb">A comprehensive resource on technology-facilitated stalking — how it works, how it hides, who it targets, and what you can do. Statistics, technical detail, legal frameworks, and worldwide resources.</div>
+        <div class="card-blurb"><span class="blurb-inner">A comprehensive resource on technology-facilitated stalking — how it works, how it hides, who it targets, and what you can do. Statistics, technical detail, legal frameworks, and worldwide resources.</span></div>
         <div class="card-buttons">
           <a href="https://cyberstalking.terricampoli25.workers.dev/" class="btn btn-launch" target="_blank">Launch PDF</a>
         </div>
@@ -870,7 +875,7 @@
       </div>
       <div class="card-info">
         <div class="card-name">Protect Your Data</div>
-        <div class="card-blurb">If you are testing an app in its web-based form, please remember that your saved data — conversations, settings, countdowns, and preferences — are stored locally in your browser.<br><br><strong style="color:var(--cream)">Clearing your cookies or browser history will permanently erase everything.</strong> There is no account, no cloud backup, and no way to recover it. Avoid private or incognito mode, and do not clear site data for these apps.</div>
+        <div class="card-blurb"><span class="blurb-inner">If you are testing an app in its web-based form, please remember that your saved data — conversations, settings, countdowns, and preferences — are stored locally in your browser.<br><br><strong style="color:var(--cream)">Clearing your cookies or browser history will permanently erase everything.</strong> There is no account, no cloud backup, and no way to recover it. Avoid private or incognito mode, and do not clear site data for these apps.</span></div>
       </div>
     </div>
 
@@ -884,7 +889,7 @@
       </div>
       <div class="card-info">
         <div class="card-name">Privacy & Transparency</div>
-        <div class="card-blurb">I'm an indie developer. I don't collect or sell your data, my apps are ad-free, and I only earn through donations, one-time purchases, and subscriptions. Your privacy matters.</div>
+        <div class="card-blurb"><span class="blurb-inner">I'm an indie developer. I don't collect or sell your data, my apps are ad-free, and I only earn through donations, one-time purchases, and subscriptions. Your privacy matters.</span></div>
       </div>
     </div>
 
@@ -933,6 +938,15 @@
       <span class="fb-error fb-submit-error" id="fb-submit-error" role="alert"></span>
       <button type="submit" class="btn btn-launch" id="fb-submit">Send feedback</button>
     </form>
+  </div>
+</div>
+
+<!-- Blurb "Read more" modal -->
+<div class="fb-overlay" id="blurb-modal" role="dialog" aria-modal="true" aria-labelledby="blurb-modal-title">
+  <div class="fb-panel">
+    <button class="fb-close" id="blurb-close" aria-label="Close">&#x2715;</button>
+    <div class="blurb-modal-name" id="blurb-modal-title"></div>
+    <div class="blurb-modal-text" id="blurb-modal-text"></div>
   </div>
 </div>
 
@@ -1067,6 +1081,66 @@
       showError('fb-submit-error', 'Couldn’t send right now. Please try again in a moment.');
     });
   });
+
+  // Blurb "Read more" modal
+  (function() {
+    var bModal = document.getElementById('blurb-modal');
+    var bClose = document.getElementById('blurb-close');
+    var bTitle = document.getElementById('blurb-modal-title');
+    var bText  = document.getElementById('blurb-modal-text');
+
+    function openBlurb(name, html) {
+      bTitle.textContent = name;
+      bText.innerHTML = html;
+      bModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      bClose.focus();
+    }
+
+    function closeBlurb() {
+      bModal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    bClose.addEventListener('click', closeBlurb);
+    bModal.addEventListener('click', function(e) {
+      if (e.target === bModal) closeBlurb();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && bModal.classList.contains('open')) closeBlurb();
+    });
+
+    function needsReadMore(inner) {
+      var clone = inner.cloneNode(true);
+      clone.style.cssText = 'position:absolute;visibility:hidden;height:auto;max-height:none;'
+        + '-webkit-line-clamp:unset;display:block;overflow:visible;'
+        + 'width:' + inner.offsetWidth + 'px;font-size:' + getComputedStyle(inner).fontSize;
+      document.body.appendChild(clone);
+      var fullH = clone.offsetHeight;
+      document.body.removeChild(clone);
+      return fullH > inner.clientHeight + 2;
+    }
+
+    document.fonts.ready.then(function() {
+      document.querySelectorAll('.card-blurb').forEach(function(blurb) {
+        var inner = blurb.querySelector('.blurb-inner');
+        if (!inner || !needsReadMore(inner)) return;
+
+        var nameEl = blurb.closest('.card-info') && blurb.closest('.card-info').querySelector('.card-name');
+        var name = nameEl ? nameEl.textContent.trim() : '';
+        var fullHtml = inner.innerHTML;
+
+        var btn = document.createElement('button');
+        btn.className = 'btn-read-more';
+        btn.textContent = 'Read more';
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          openBlurb(name, fullHtml);
+        });
+        blurb.appendChild(btn);
+      });
+    });
+  })();
 </script>
 
 
