@@ -177,7 +177,29 @@
     color: var(--text-muted);
     line-height: 1.4;
     flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-clamp: 2;
+    overflow: hidden;
   }
+
+  .read-more {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin-top: 0.25rem;
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--gold-light);
+    cursor: pointer;
+    display: block;
+    text-align: left;
+    transition: color 0.2s;
+  }
+
+  .read-more:hover { color: var(--gold); }
 
   .card-price {
     font-family: 'Cinzel', serif;
@@ -1067,6 +1089,89 @@
       showError('fb-submit-error', 'Couldn’t send right now. Please try again in a moment.');
     });
   });
+</script>
+
+<!-- Blurb modal -->
+<div class="fb-overlay" id="blurb-modal" role="dialog" aria-modal="true" aria-labelledby="blurb-title">
+  <div class="fb-panel" id="blurb-panel">
+    <button class="fb-close" id="blurb-close" aria-label="Close">&#x2715;</button>
+    <h2 class="fb-heading" id="blurb-title"></h2>
+    <p class="fb-subline" id="blurb-body" style="color:var(--cream);font-size:1rem;line-height:1.65;margin-bottom:0;"></p>
+  </div>
+</div>
+
+<script>
+  (function() {
+    var blurbOverlay = document.getElementById('blurb-modal');
+    var blurbTitle   = document.getElementById('blurb-title');
+    var blurbBody    = document.getElementById('blurb-body');
+    var blurbClose   = document.getElementById('blurb-close');
+    var blurbPanel   = document.getElementById('blurb-panel');
+
+    function openBlurb(name, text) {
+      blurbTitle.textContent = name;
+      blurbBody.textContent  = text;
+      blurbOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      blurbClose.focus();
+    }
+
+    function closeBlurb() {
+      blurbOverlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    blurbClose.addEventListener('click', closeBlurb);
+    blurbOverlay.addEventListener('click', function(e) {
+      if (e.target === blurbOverlay) closeBlurb();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && blurbOverlay.classList.contains('open')) closeBlurb();
+    });
+
+    blurbOverlay.addEventListener('keydown', function(e) {
+      if (!blurbOverlay.classList.contains('open') || e.key !== 'Tab') return;
+      var focusable = Array.prototype.slice.call(
+        blurbPanel.querySelectorAll('button, [tabindex]:not([tabindex="-1"])')
+      ).filter(function(el) { return !el.disabled && el.offsetParent !== null; });
+      if (!focusable.length) return;
+      var first = focusable[0], last = focusable[focusable.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+      } else {
+        if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    });
+
+    function addReadMoreButtons() {
+      document.querySelectorAll('.read-more').forEach(function(btn) { btn.remove(); });
+      document.querySelectorAll('.card-blurb').forEach(function(blurb) {
+        if (blurb.scrollHeight > blurb.clientHeight + 2) {
+          var cardInfo = blurb.parentElement;
+          var nameEl   = cardInfo.querySelector('.card-name');
+          var name     = nameEl ? nameEl.textContent.trim() : '';
+          var fullText = blurb.textContent.trim();
+          var btn = document.createElement('button');
+          btn.className   = 'read-more';
+          btn.textContent = 'Read more';
+          btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            openBlurb(name, fullText);
+          });
+          blurb.insertAdjacentElement('afterend', btn);
+        }
+      });
+    }
+
+    var resizeTimer;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(addReadMoreButtons, 150);
+    });
+
+    document.addEventListener('DOMContentLoaded', addReadMoreButtons);
+    if (document.readyState !== 'loading') addReadMoreButtons();
+  })();
 </script>
 
 </body>
