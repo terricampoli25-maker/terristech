@@ -1,18 +1,16 @@
-const FROM_ADDRESS   = "Terristech Feedback <onboarding@resend.dev>";
+const FROM_ADDRESS   = "Terristech Feedback <feedback@terristech.com>";
 const RESEND_API_URL = "https://api.resend.com/emails";
 
 export default {
   async fetch(request, env) {
     const url  = new URL(request.url);
     const path = url.pathname;
-
     if (path === "/api/feedback") {
       if (request.method !== "POST") {
         return Response.json({ ok: false, error: "Method not allowed" }, { status: 405 });
       }
       return handleFeedback(request, env);
     }
-
     return env.ASSETS.fetch(request);
   },
 };
@@ -40,8 +38,12 @@ async function handleFeedback(request, env) {
 
   const RESEND_API_KEY    = env.RESEND_API_KEY;
   const FEEDBACK_TO_EMAIL = env.FEEDBACK_TO_EMAIL;
-
   if (!RESEND_API_KEY || !FEEDBACK_TO_EMAIL) {
+    console.error(
+      "Feedback config missing:",
+      "RESEND_API_KEY present?", !!RESEND_API_KEY,
+      "FEEDBACK_TO_EMAIL present?", !!FEEDBACK_TO_EMAIL
+    );
     return Response.json({ ok: false, error: "Server not configured" }, { status: 500 });
   }
 
@@ -80,8 +82,12 @@ async function handleFeedback(request, env) {
     if (res.ok) {
       return Response.json({ ok: true }, { status: 200 });
     }
+
+    const detail = await res.text();
+    console.error("Resend send failed:", res.status, detail);
     return Response.json({ ok: false, error: "Could not send" }, { status: 500 });
-  } catch {
+  } catch (err) {
+    console.error("Feedback send threw:", err);
     return Response.json({ ok: false, error: "Could not send" }, { status: 500 });
   }
 }
