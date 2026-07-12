@@ -1,1 +1,7 @@
+.assetsignore
 worker.js
+wrangler.jsonc
+CLAUDE.md
+.git/
+.gitignore
+.wrangler/
